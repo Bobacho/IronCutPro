@@ -22,12 +22,12 @@ public class Barra {
     {
         return this.material;
     }
-    public float generarPuntosCorteLargo(Barra [] barras)
+    public float[] generarPuntosCorteLargo(Barra [] barras)
     {
         //TODO
         return null;
     }
-    public float generarPuntosCorteAncho(Barra [] barras)
+    public float[] generarPuntosCorteAncho(Barra [] barras)
     {
         //TODO
         return null;

@@ -13,6 +13,25 @@ public class Pedido {
     private Barra[] barrasGeneradas;
     private int cantidad;
     
+    public void agregarBarraInicial(Barra barra)
+    {
+        barraInicial=barra;
+    }
+    private void agregarBarrasGeneradas(Barra []barras)
+    {
+        barrasGeneradas=barras;
+    }
+    
+    public float[] generarPuntos(boolean esLargo)
+    {
+        if(!esLargo){
+            return barraInicial.generarPuntosCorteAncho(barrasGeneradas);
+        }
+        else
+        {
+            return barraInicial.generarPuntosCorteLargo(barrasGeneradas);
+        }
+    }
     public Barra obtenerBarra(int i)
     {
         return this.barrasGeneradas[i];
