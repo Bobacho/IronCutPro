@@ -4,16 +4,25 @@
  */
 package ironcutpro;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author luciano
  */
 public class Ventas {
-    Pedido[] pedidos;
+    private List<Pedido> pedidos;
+    
+    public Ventas()
+    {
+        pedidos=new ArrayList<>();
+    }
     
     public void agregarPedido(Pedido pedido)
     {
         //TODO
+        pedidos.add(pedido);
     }
     
     public void procesarPedidos()
@@ -21,7 +30,7 @@ public class Ventas {
         //TODO
     }
     
-    public Pedido[] obtenerPedidos()
+    public List<Pedido> obtenerPedidos()
     {
         return this.pedidos;
     }

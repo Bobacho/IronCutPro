@@ -10,10 +10,11 @@ package ironcutpro;
  */
 public class Inventario {
     Barra[] barras;
-    
+    private int barraActual=0;
     public void agregarBarra(Barra barra)
     {
         //TODO
+        barras[barraActual]=barra;
     }
     public void actualizarInventario()
     {
@@ -22,6 +23,6 @@ public class Inventario {
     public Barra[] obtenerExistencias()
     {
         //TODO
-        return null;
+        return barras;
     }
 }
