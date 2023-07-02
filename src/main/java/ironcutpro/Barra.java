@@ -17,19 +17,47 @@ public class Barra {
     {
         return this.longitud;
     }
-    
+    public float obtenerAncho()
+    {
+        return this.ancho;
+    }
     public String obtenerMaterial()
     {
         return this.material;
     }
     public float[] generarPuntosCorteLargo(Barra [] barras)
     {
-        //TODO
-        return null;
+        float[] retornar=new float[barras.length];
+        float cursor=0;
+        int i=0;
+        for(Barra barra:barras)
+        {
+            if(cursor<this.longitud)
+            {
+                cursor+=barra.longitud;
+                retornar[i]=cursor;
+                i++;
+            }
+        }
+        
+        return retornar;
     }
     public float[] generarPuntosCorteAncho(Barra [] barras)
     {
         //TODO
-        return null;
+        float[] retornar=new float[barras.length];
+        float cursor=0;
+        int i=0;
+        for(Barra barra:barras)
+        {
+            if(cursor<this.ancho)
+            {
+                cursor+=barra.ancho;
+                retornar[i]=cursor;
+                i++;
+            }
+        }
+        
+        return retornar;
     }
 }
