@@ -61,11 +61,10 @@ public class HomePanel extends javax.swing.JFrame {
         });
         getContentPane().add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 370, -1, -1));
 
-        ImageUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ironcutpro/User (1).png"))); // NOI18N
-        getContentPane().add(ImageUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, -1, -1));
+        ImageUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ironcutpro/Imagenes/User (1).png"))); // NOI18N
+        getContentPane().add(ImageUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 130, 110));
 
-        FondoHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ironcutpro/FONDOMETAL.jpg"))); // NOI18N
-        FondoHome.setText("jLabel1");
+        FondoHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ironcutpro/Imagenes/FONDOMETAL.jpg"))); // NOI18N
         getContentPane().add(FondoHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 697, 430));
 
         pack();

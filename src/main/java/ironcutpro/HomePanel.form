@@ -85,21 +85,20 @@
     <Component class="javax.swing.JLabel" name="ImageUser">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/ironcutpro/User (1).png"/>
+          <Image iconType="3" name="/ironcutpro/Imagenes/User (1).png"/>
         </Property>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="50" y="50" width="-1" height="-1"/>
+          <AbsoluteConstraints x="50" y="60" width="130" height="110"/>
         </Constraint>
       </Constraints>
     </Component>
     <Component class="javax.swing.JLabel" name="FondoHome">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/ironcutpro/FONDOMETAL.jpg"/>
+          <Image iconType="3" name="/ironcutpro/Imagenes/FONDOMETAL.jpg"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="jLabel1"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
