@@ -44,7 +44,7 @@ public class HomePanel extends javax.swing.JFrame {
                 RealizarCActionPerformed(evt);
             }
         });
-        getContentPane().add(RealizarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 194, 180, 30));
+        getContentPane().add(RealizarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 180, -1));
 
         CarritoC.setBackground(new java.awt.Color(102, 102, 102));
         CarritoC.setForeground(new java.awt.Color(153, 153, 255));

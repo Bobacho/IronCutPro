@@ -4,6 +4,11 @@
  */
 package ironcutpro;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author luciano
@@ -13,8 +18,10 @@ public class AplicacionPanel extends javax.swing.JFrame {
     /**
      * Creates new form AplicacionPanel
      */
-    public AplicacionPanel() {
+    ControladorUsuarios usuarios;
+    public AplicacionPanel() throws IOException, FileNotFoundException, ClassNotFoundException {
         initComponents();
+        usuarios=new ControladorUsuarios();
     }
 
     /**
@@ -36,17 +43,24 @@ public class AplicacionPanel extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         B1 = new javax.swing.JButton();
 
+        Error.setMinimumSize(new java.awt.Dimension(412, 219));
+
         jLabel4.setFont(new java.awt.Font("Liberation Serif", 0, 18)); // NOI18N
         jLabel4.setText("Credenciales incorrectas");
 
         jButton1.setText("Salir");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout ErrorLayout = new javax.swing.GroupLayout(Error.getContentPane());
         Error.getContentPane().setLayout(ErrorLayout);
         ErrorLayout.setHorizontalGroup(
             ErrorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ErrorLayout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
+                .addContainerGap(118, Short.MAX_VALUE)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(101, 101, 101))
             .addGroup(ErrorLayout.createSequentialGroup()
@@ -61,7 +75,7 @@ public class AplicacionPanel extends javax.swing.JFrame {
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -69,13 +83,16 @@ public class AplicacionPanel extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Laksaman", 0, 24)); // NOI18N
         jLabel1.setText("Acceso");
 
-        P1.setText("jPasswordField1");
-
         jLabel2.setText("Usuario:");
 
         jLabel3.setText("Contraseña:");
 
         B1.setText("Acceder");
+        B1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -121,6 +138,58 @@ public class AplicacionPanel extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void B1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B1ActionPerformed
+        try {                                   
+            // TODO add your handling code here:
+            String nombre=T1.getText();
+            String contra=P1.getText();
+            usuarios.cargarUsuarios();
+            for(Usuario it:usuarios.usuarios){
+                System.out.println(it.getNombre()+":"+it.getPassword()+":"+it.isAdmin());
+            }
+            Registro<Usuario> usuarioActual=new Registro("UsuarioActual.txt");
+            Usuario temp=new Usuario(nombre,contra);
+            System.out.println(temp.getNombre());
+            try {
+                usuarioActual.guardar(temp);
+            } catch (IOException ex) {
+                Logger.getLogger(AplicacionPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            System.out.println(usuarios.existeUsuario(temp));
+            if(usuarios.existeUsuario(temp))
+            {
+                
+                if(temp.isAdmin())
+                {
+                    
+                }
+                else
+                {
+                    this.setVisible(false);
+                    HomePanel h=new HomePanel();
+                    h.setVisible(true);
+                }
+                
+            }
+            else
+            {
+                Error.setVisible(true);
+                
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(AplicacionPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AplicacionPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_B1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Error.setVisible(false);
+        T1.setText("");
+        P1.setText("");
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -151,7 +220,13 @@ public class AplicacionPanel extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AplicacionPanel().setVisible(true);
+                try {
+                    new AplicacionPanel().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(AplicacionPanel.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(AplicacionPanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

@@ -19,11 +19,11 @@ public class Usuario implements Serializable{
     @Getter @Setter
     private boolean Admin;
     
-    public Usuario(String nombre,String password,boolean Admin)
+    public Usuario(String nombre,String password)
     {
         this.nombre=nombre;
         this.password=password;
-        this.Admin=Admin;
     }
+
     
 }

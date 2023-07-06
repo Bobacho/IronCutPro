@@ -7,6 +7,7 @@ package ironcutpro;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -15,10 +16,11 @@ import java.util.List;
  */
 public class ControladorUsuarios {
     List<Usuario> usuarios;
-    String ruta="/registros/Usuarios.txt";
-    public ControladorUsuarios()
+    String ruta="Usuarios.txt";
+    public ControladorUsuarios() throws IOException, FileNotFoundException, ClassNotFoundException
     {
         usuarios=new ArrayList<>();
+        cargarUsuarios();
     }
     public void guardarUsuarios() throws IOException
     {
@@ -37,5 +39,28 @@ public class ControladorUsuarios {
     public Usuario obtenerUsuario(int id)
     {
         return usuarios.get(id);
+    }
+    public Usuario[] toArray()
+    {
+        Usuario[] retornar=new Usuario[usuarios.size()];
+        for(int i=0;i<usuarios.size();i++)
+        {
+            retornar[i]=usuarios.get(i);
+        }
+        return retornar;
+    }
+    public boolean existeUsuario(Usuario usuario)
+    {
+        Comparator<Usuario> comparator=new Comparator<Usuario>() {
+            @Override
+            public int compare(Usuario t, Usuario t1) {
+                return t.getNombre().compareTo(t1.getNombre());
+            }
+        };
+            
+        Operaciones<Usuario> op=new Operaciones();
+        Usuario[] u=toArray();
+        op.ordenadoPorQuickSort(u,comparator);
+        return op.busquedaBinaria(u, usuario,comparator) != -1;
     }
 }
