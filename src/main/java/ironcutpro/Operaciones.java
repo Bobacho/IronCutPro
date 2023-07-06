@@ -63,7 +63,40 @@ public class Operaciones<T>{
         }
         if(fin> pivote+1)
         {
-            quickSort(arreglo,pivote+1,fin)
+            quickSort(arreglo,pivote+1,fin);
         }
     }
+    
+    public int busquedaBinaria(T[] arreglo, T elemento)
+    {
+        int izq=0;
+        int der=arreglo.length;
+        int medio;
+        int retornar=-1;
+        boolean bandera=true;
+        while(bandera)
+        {
+            medio=(izq+der)/2;
+            if(arreglo[medio].equals(elemento))
+            {
+                retornar=medio;
+                bandera=false;
+            }
+            else if(comparator.compare(arreglo[medio],elemento)>0)
+            {
+                der=medio+1;
+            }
+            else if(comparator.compare(arreglo[medio],elemento)<0)
+            {
+                izq=medio-1;
+            }
+            else
+            {
+                bandera=false;
+            }
+        }
+        return retornar;
+    }
+    
+    
 }
