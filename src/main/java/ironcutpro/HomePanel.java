@@ -49,7 +49,7 @@ public class HomePanel extends javax.swing.JFrame {
         CarritoC.setBackground(new java.awt.Color(102, 102, 102));
         CarritoC.setForeground(new java.awt.Color(153, 153, 255));
         CarritoC.setText("Carrito de compras");
-        getContentPane().add(CarritoC, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, -1, -1));
+        getContentPane().add(CarritoC, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 180, 30));
 
         Salir.setBackground(new java.awt.Color(153, 153, 255));
         Salir.setForeground(new java.awt.Color(102, 102, 102));
@@ -60,18 +60,11 @@ public class HomePanel extends javax.swing.JFrame {
             }
         });
         getContentPane().add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 370, -1, -1));
-<<<<<<< HEAD
 
         ImageUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ironcutpro/Imagenes/User (1).png"))); // NOI18N
-        getContentPane().add(ImageUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 130, 110));
+        getContentPane().add(ImageUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 130, 110));
 
         FondoHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ironcutpro/Imagenes/FONDOMETAL.jpg"))); // NOI18N
-=======
-        getContentPane().add(ImageUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, -1, -1));
-
-        FondoHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ironcutpro/Imagenes/FONDOMETAL.jpg"))); // NOI18N
-        FondoHome.setText("jLabel1");
->>>>>>> 5c0de2d (Algo avance)
         getContentPane().add(FondoHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 697, 430));
 
         pack();
@@ -113,10 +106,8 @@ public class HomePanel extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new HomePanel().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new HomePanel().setVisible(true);
         });
     }
 
