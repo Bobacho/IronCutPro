@@ -26,8 +26,6 @@ public class AplicacionPanel extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Menu = new javax.swing.JFrame();
-        jLabel5 = new javax.swing.JLabel();
         Error = new javax.swing.JDialog();
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -37,26 +35,6 @@ public class AplicacionPanel extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         B1 = new javax.swing.JButton();
-
-        jLabel5.setFont(new java.awt.Font("Likhan", 0, 36)); // NOI18N
-        jLabel5.setText("MENU");
-
-        javax.swing.GroupLayout MenuLayout = new javax.swing.GroupLayout(Menu.getContentPane());
-        Menu.getContentPane().setLayout(MenuLayout);
-        MenuLayout.setHorizontalGroup(
-            MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(MenuLayout.createSequentialGroup()
-                .addGap(131, 131, 131)
-                .addComponent(jLabel5)
-                .addContainerGap(163, Short.MAX_VALUE))
-        );
-        MenuLayout.setVerticalGroup(
-            MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(MenuLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jLabel5)
-                .addContainerGap(421, Short.MAX_VALUE))
-        );
 
         jLabel4.setFont(new java.awt.Font("Liberation Serif", 0, 18)); // NOI18N
         jLabel4.setText("Credenciales incorrectas");
@@ -181,7 +159,6 @@ public class AplicacionPanel extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton B1;
     private javax.swing.JDialog Error;
-    private javax.swing.JFrame Menu;
     private javax.swing.JPasswordField P1;
     private javax.swing.JTextField T1;
     private javax.swing.JButton jButton1;
@@ -189,6 +166,5 @@ public class AplicacionPanel extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     // End of variables declaration//GEN-END:variables
 }
