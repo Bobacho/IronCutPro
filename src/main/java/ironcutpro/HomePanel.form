@@ -43,7 +43,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="50" y="200" width="132" height="-1"/>
+          <AbsoluteConstraints x="50" y="194" width="180" height="30"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -83,11 +83,14 @@
       </Constraints>
     </Component>
     <Component class="javax.swing.JLabel" name="ImageUser">
+<<<<<<< HEAD
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/ironcutpro/Imagenes/User (1).png"/>
         </Property>
       </Properties>
+=======
+>>>>>>> 5c0de2d (Algo avance)
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="50" y="60" width="130" height="110"/>

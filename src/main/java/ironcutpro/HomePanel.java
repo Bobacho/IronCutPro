@@ -44,7 +44,7 @@ public class HomePanel extends javax.swing.JFrame {
                 RealizarCActionPerformed(evt);
             }
         });
-        getContentPane().add(RealizarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 132, -1));
+        getContentPane().add(RealizarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 194, 180, 30));
 
         CarritoC.setBackground(new java.awt.Color(102, 102, 102));
         CarritoC.setForeground(new java.awt.Color(153, 153, 255));
@@ -60,11 +60,18 @@ public class HomePanel extends javax.swing.JFrame {
             }
         });
         getContentPane().add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 370, -1, -1));
+<<<<<<< HEAD
 
         ImageUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ironcutpro/Imagenes/User (1).png"))); // NOI18N
         getContentPane().add(ImageUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 130, 110));
 
         FondoHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ironcutpro/Imagenes/FONDOMETAL.jpg"))); // NOI18N
+=======
+        getContentPane().add(ImageUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, -1, -1));
+
+        FondoHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ironcutpro/Imagenes/FONDOMETAL.jpg"))); // NOI18N
+        FondoHome.setText("jLabel1");
+>>>>>>> 5c0de2d (Algo avance)
         getContentPane().add(FondoHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 697, 430));
 
         pack();

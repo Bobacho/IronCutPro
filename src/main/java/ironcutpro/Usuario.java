@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package ironcutpro;
+import java.io.Serializable;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,7 +11,7 @@ import lombok.Setter;
  *
  * @author luciano
  */
-public class Usuario {
+public class Usuario implements Serializable{
     @Getter @Setter
     private String nombre;
     @Getter @Setter
