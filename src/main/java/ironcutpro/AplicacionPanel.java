@@ -155,13 +155,14 @@ public class AplicacionPanel extends javax.swing.JFrame {
             } catch (IOException ex) {
                 Logger.getLogger(AplicacionPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
-            System.out.println(usuarios.existeUsuario(temp));
             if(usuarios.existeUsuario(temp))
             {
-                
+                temp.setAdmin(usuarios.obtenerUsuario(usuarios.buscarUsuario(temp)).isAdmin());
                 if(temp.isAdmin())
                 {
-                    
+                    this.setVisible(false);
+                    AdminPanelHome a=new AdminPanelHome();
+                    a.setVisible(true);
                 }
                 else
                 {

@@ -4,6 +4,10 @@
  */
 package ironcutpro;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author main_
@@ -27,7 +31,7 @@ public class HomePanel extends javax.swing.JFrame {
     private void initComponents() {
 
         RealizarC = new javax.swing.JButton();
-        CarritoC = new javax.swing.JButton();
+        Carrito = new javax.swing.JButton();
         Salir = new javax.swing.JButton();
         ImageUser = new javax.swing.JLabel();
         FondoHome = new javax.swing.JLabel();
@@ -44,12 +48,17 @@ public class HomePanel extends javax.swing.JFrame {
                 RealizarCActionPerformed(evt);
             }
         });
-        getContentPane().add(RealizarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 180, -1));
+        getContentPane().add(RealizarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, 180, -1));
 
-        CarritoC.setBackground(new java.awt.Color(102, 102, 102));
-        CarritoC.setForeground(new java.awt.Color(153, 153, 255));
-        CarritoC.setText("Carrito de compras");
-        getContentPane().add(CarritoC, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 180, 30));
+        Carrito.setBackground(new java.awt.Color(102, 102, 102));
+        Carrito.setForeground(new java.awt.Color(153, 153, 255));
+        Carrito.setText("Carrito");
+        Carrito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CarritoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Carrito, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 180, -1));
 
         Salir.setBackground(new java.awt.Color(153, 153, 255));
         Salir.setForeground(new java.awt.Color(102, 102, 102));
@@ -62,7 +71,7 @@ public class HomePanel extends javax.swing.JFrame {
         getContentPane().add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 370, -1, -1));
 
         ImageUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ironcutpro/Imagenes/User (1).png"))); // NOI18N
-        getContentPane().add(ImageUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 130, 110));
+        getContentPane().add(ImageUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 50, 130, 110));
 
         FondoHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ironcutpro/Imagenes/FONDOMETAL.jpg"))); // NOI18N
         getContentPane().add(FondoHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 697, 430));
@@ -72,11 +81,27 @@ public class HomePanel extends javax.swing.JFrame {
 
     private void RealizarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RealizarCActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
+        MaterialPanel m=new MaterialPanel();
+        m.setVisible(true);
     }//GEN-LAST:event_RealizarCActionPerformed
 
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_SalirActionPerformed
+
+    private void CarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CarritoActionPerformed
+        try {
+            // TODO add your handling code here:
+            this.setVisible(false);
+            CarritoPanel c=new CarritoPanel();
+            c.setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(HomePanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(HomePanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_CarritoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -112,7 +137,7 @@ public class HomePanel extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton CarritoC;
+    private javax.swing.JButton Carrito;
     private javax.swing.JLabel FondoHome;
     private javax.swing.JLabel ImageUser;
     private javax.swing.JButton RealizarC;

@@ -24,4 +24,30 @@
         <maven.compiler.target>17</maven.compiler.target>
         <exec.mainClass>ironcutpro.AplicacionPanel</exec.mainClass>
     </properties>
+    <build>
+        <plugins>
+            <plugin>
+                <!-- Build an executable JAR -->
+            <artifactId>maven-assembly-plugin</artifactId>
+            <executions>
+                <execution>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>single</goal>
+                    </goals>
+                </execution>
+            </executions>
+            <configuration>
+                <descriptorRefs>
+                    <descriptorRef>jar-with-dependencies</descriptorRef>
+                </descriptorRefs>
+                <archive>
+                    <manifest>
+                        <mainClass>ironcutpro.AplicacionPanel</mainClass>
+                    </manifest>
+                </archive>
+            </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

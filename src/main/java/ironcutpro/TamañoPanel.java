@@ -4,6 +4,10 @@
  */
 package ironcutpro;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author main_
@@ -13,6 +17,7 @@ public class TamañoPanel extends javax.swing.JFrame {
     /**
      * Creates new form TamañoPanel
      */
+    Registro<Pedido> reg=new Registro<>("pedidoActual.txt");
     public TamañoPanel() {
         initComponents();
     }
@@ -26,11 +31,11 @@ public class TamañoPanel extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
-        jCheckBox5 = new javax.swing.JCheckBox();
+        C1 = new javax.swing.JCheckBox();
+        C2 = new javax.swing.JCheckBox();
+        C3 = new javax.swing.JCheckBox();
+        C4 = new javax.swing.JCheckBox();
+        C5 = new javax.swing.JCheckBox();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -40,35 +45,35 @@ public class TamañoPanel extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jCheckBox1.setBackground(java.awt.Color.orange);
-        jCheckBox1.setText("100cm ");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        C1.setBackground(java.awt.Color.orange);
+        C1.setText("100cm ");
+        C1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                C1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 90, -1));
+        getContentPane().add(C1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 90, -1));
 
-        jCheckBox2.setBackground(java.awt.Color.orange);
-        jCheckBox2.setText("5 M");
-        jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
+        C2.setBackground(java.awt.Color.orange);
+        C2.setText("5 M");
+        C2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox2ActionPerformed(evt);
+                C2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 200, 90, -1));
+        getContentPane().add(C2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 200, 90, -1));
 
-        jCheckBox3.setBackground(java.awt.Color.orange);
-        jCheckBox3.setText("8 M");
-        getContentPane().add(jCheckBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 200, 90, -1));
+        C3.setBackground(java.awt.Color.orange);
+        C3.setText("8 M");
+        getContentPane().add(C3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 200, 90, -1));
 
-        jCheckBox4.setBackground(java.awt.Color.orange);
-        jCheckBox4.setText("12 M");
-        getContentPane().add(jCheckBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 200, 90, -1));
+        C4.setBackground(java.awt.Color.orange);
+        C4.setText("12 M");
+        getContentPane().add(C4, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 200, 90, -1));
 
-        jCheckBox5.setBackground(java.awt.Color.orange);
-        jCheckBox5.setText("15 M");
-        getContentPane().add(jCheckBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, 90, -1));
+        C5.setBackground(java.awt.Color.orange);
+        C5.setText("15 M");
+        getContentPane().add(C5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, 90, -1));
 
         jLabel2.setBackground(java.awt.Color.orange);
         jLabel2.setFont(new java.awt.Font("Bodoni MT", 0, 18)); // NOI18N
@@ -84,11 +89,21 @@ public class TamañoPanel extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(153, 255, 153));
         jButton1.setForeground(new java.awt.Color(102, 102, 102));
         jButton1.setText("Siguiente");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 360, -1, -1));
 
         jButton2.setBackground(new java.awt.Color(153, 255, 153));
         jButton2.setForeground(new java.awt.Color(102, 102, 102));
         jButton2.setText("Atras");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ironcutpro/Imagenes/FondoHD.jpg"))); // NOI18N
@@ -98,13 +113,58 @@ public class TamañoPanel extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+    private void C1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_C1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    }//GEN-LAST:event_C1ActionPerformed
 
-    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
+    private void C2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_C2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox2ActionPerformed
+    }//GEN-LAST:event_C2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            // TODO add your handling code here:
+            int longitud=0;
+            if(C1.isSelected())
+            {
+                longitud=100;
+            }
+            else if(C2.isSelected())
+            {
+                longitud=500;
+            }
+            else if(C3.isSelected())
+            {
+                longitud=800;
+            }
+            else if(C4.isSelected())
+            {
+                longitud=1200;
+            }
+            else if(C5.isSelected())
+            {
+                longitud=1500;
+            }
+            Pedido temp=reg.cargar();
+            temp.barraInicial.setLongitud(longitud);
+            reg.guardar(temp);
+            this.setVisible(false);
+            RealizarCorte c=new RealizarCorte();
+            c.setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(TamañoPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(TamañoPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        HomePanel h=new HomePanel();
+        h.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -142,13 +202,13 @@ public class TamañoPanel extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox C1;
+    private javax.swing.JCheckBox C2;
+    private javax.swing.JCheckBox C3;
+    private javax.swing.JCheckBox C4;
+    private javax.swing.JCheckBox C5;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JCheckBox jCheckBox5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

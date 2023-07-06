@@ -4,6 +4,11 @@
  */
 package ironcutpro;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author main_
@@ -13,8 +18,10 @@ public class CambioPanel extends javax.swing.JFrame {
     /**
      * Creates new form CambioPanel
      */
-    public CambioPanel() {
-        initComponents();
+    Registro<Pedido> reg=new Registro("pedidoActual.txt");
+    Pedido temp;
+    public CambioPanel() throws IOException, FileNotFoundException, ClassNotFoundException {
+        initComponents(); 
     }
 
     /**
@@ -29,6 +36,7 @@ public class CambioPanel extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         MontoPago = new javax.swing.JTextField();
         Cambio = new javax.swing.JLabel();
         Salir = new javax.swing.JButton();
@@ -53,13 +61,25 @@ public class CambioPanel extends javax.swing.JFrame {
         jLabel4.setText("El vuelto de tu pago es:");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, -1, -1));
 
-        MontoPago.setText("Número");
-        getContentPane().add(MontoPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 140, -1, -1));
+        jButton1.setText("Cambio");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 140, -1, -1));
+        getContentPane().add(MontoPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 140, 110, -1));
 
-        Cambio.setText("jLabel5");
-        getContentPane().add(Cambio, new org.netbeans.lib.awtextra.AbsoluteConstraints(318, 260, 100, 150));
+        Cambio.setFont(new java.awt.Font("Liberation Sans", 0, 10)); // NOI18N
+        Cambio.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(Cambio, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, 350, 150));
 
         Salir.setText("Salir");
+        Salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SalirActionPerformed(evt);
+            }
+        });
         getContentPane().add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 440, -1, -1));
 
         Home.setText("Home");
@@ -79,7 +99,29 @@ public class CambioPanel extends javax.swing.JFrame {
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
+        HomePanel h=new HomePanel();
+        h.setVisible(true);
     }//GEN-LAST:event_HomeActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            // TODO add your handling code here:
+            temp=reg.cargar();
+            float dinero=Float.parseFloat(MontoPago.getText());
+            System.out.println(temp.getCostoTotal());
+            Cambio.setText(DarCambio.generarCambio(dinero-temp.getCostoTotal()).toString());
+        } catch (IOException ex) {
+            Logger.getLogger(CambioPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(CambioPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_SalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -111,7 +153,13 @@ public class CambioPanel extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CambioPanel().setVisible(true);
+                try {
+                    new CambioPanel().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(CambioPanel.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(CambioPanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -121,6 +169,7 @@ public class CambioPanel extends javax.swing.JFrame {
     private javax.swing.JButton Home;
     private javax.swing.JTextField MontoPago;
     private javax.swing.JButton Salir;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

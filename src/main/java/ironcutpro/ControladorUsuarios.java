@@ -27,6 +27,10 @@ public class ControladorUsuarios {
         Registro<List<Usuario>> r=new Registro(ruta);
         r.guardar(usuarios);
     }
+    public void eliminarUsuarios(Usuario usuario)
+    {
+        usuarios.remove(usuario);
+    }
     public void cargarUsuarios() throws IOException, FileNotFoundException, ClassNotFoundException
     {
         Registro<List<Usuario>> r=new Registro(ruta);
@@ -48,6 +52,31 @@ public class ControladorUsuarios {
             retornar[i]=usuarios.get(i);
         }
         return retornar;
+    }
+    public Usuario buscarUsuario(String nombre)
+    {
+        for(Usuario it:toArray())
+        {
+            if(it.getNombre().equals(nombre))
+            {
+                return it;
+            }
+        }
+        return null;
+    }
+    public int buscarUsuario(Usuario usuario)
+    {
+        Comparator<Usuario> comparator=new Comparator<Usuario>() {
+            @Override
+            public int compare(Usuario t, Usuario t1) {
+                return t.getNombre().compareTo(t1.getNombre());
+            }
+        };
+            
+        Operaciones<Usuario> op=new Operaciones();
+        Usuario[] u=toArray();
+        op.ordenadoPorQuickSort(u,comparator);
+        return op.busquedaBinaria(u, usuario,comparator);
     }
     public boolean existeUsuario(Usuario usuario)
     {

@@ -4,6 +4,10 @@
  */
 package ironcutpro;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author main_
@@ -13,6 +17,7 @@ public class RealizarCorte extends javax.swing.JFrame {
     /**
      * Creates new form RealizarCorte
      */
+    Registro<Pedido> reg=new Registro<>("pedidoActual.txt");
     public RealizarCorte() {
         initComponents();
     }
@@ -27,14 +32,13 @@ public class RealizarCorte extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        T1 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        T2 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
+        C1 = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -45,13 +49,12 @@ public class RealizarCorte extends javax.swing.JFrame {
         jLabel2.setText("IRON CUT PRO");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, 410, -1));
 
-        jTextField1.setText("Número");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        T1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                T1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 190, -1, -1));
+        getContentPane().add(T1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 190, 340, 30));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setForeground(java.awt.Color.orange);
@@ -62,9 +65,7 @@ public class RealizarCorte extends javax.swing.JFrame {
         jLabel4.setForeground(java.awt.Color.orange);
         jLabel4.setText("A continuación ingrese la cantidad en centimetros  que quiere obtener en partes iguales:");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 620, 20));
-
-        jTextField2.setText("Número");
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 310, -1, -1));
+        getContentPane().add(T2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 310, 340, -1));
 
         jButton1.setBackground(new java.awt.Color(153, 255, 153));
         jButton1.setForeground(new java.awt.Color(102, 102, 102));
@@ -74,9 +75,13 @@ public class RealizarCorte extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(153, 255, 153));
         jButton2.setForeground(new java.awt.Color(102, 102, 102));
         jButton2.setText("Siguiente");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 430, -1, -1));
-        getContentPane().add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, -1, -1));
-        getContentPane().add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 310, -1, -1));
+        getContentPane().add(C1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ironcutpro/Imagenes/FondoHD.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -85,9 +90,40 @@ public class RealizarCorte extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void T1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_T1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_T1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+            // TODO add your handling code here:
+            int trozos=1;
+            float centimetos=Float.parseFloat(T2.getText());
+            Pedido temp=reg.cargar();
+            if(C1.isSelected())
+            {
+                trozos=Integer.parseInt(T1.getText());
+            }
+            Barra[] barras=new Barra[trozos];
+            for(int i=0;i<trozos;i++)
+            {
+                barras[i]=new Barra();
+                barras[i].setLongitud(temp.barraInicial.obtenerLongitud()/trozos);
+            }
+            temp.agregarBarrasGeneradas(barras);
+            temp.generarPuntos(true);
+            
+            reg.guardar(temp);
+            this.setVisible(false);
+            ResultadoPanel r=new ResultadoPanel();
+            r.setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(RealizarCorte.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(RealizarCorte.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -125,15 +161,14 @@ public class RealizarCorte extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox C1;
+    private javax.swing.JTextField T1;
+    private javax.swing.JTextField T2;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }

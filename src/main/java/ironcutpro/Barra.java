@@ -4,15 +4,27 @@
  */
 package ironcutpro;
 
+import java.io.Serializable;
+
 /**
  *
  * @author luciano
  */
-public class Barra {
+public class Barra implements Serializable{
     private float longitud;
     private float ancho;
     private String material;
-    
+    public void setLongitud(float longitud) {
+        this.longitud = longitud;
+    }
+
+    public void setAncho(float ancho) {
+        this.ancho = ancho;
+    }
+
+    public void setMaterial(String material) {
+        this.material = material;
+    }
     public float obtenerLongitud()
     {
         return this.longitud;

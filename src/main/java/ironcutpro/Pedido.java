@@ -4,22 +4,34 @@
  */
 package ironcutpro;
 
+import java.io.Serializable;
+
 /**
  *
  * @author luciano
  */
-public class Pedido {
-    private Barra barraInicial;
+public class Pedido implements Serializable{
+    public Barra barraInicial;
     private Barra[] barrasGeneradas;
     private int cantidad;
+    private float costoTotal;
+
+    public float getCostoTotal() {
+        return costoTotal;
+    }
+
+    public void setCostoTotal(float costoTotal) {
+        this.costoTotal = costoTotal;
+    }
     
     public void agregarBarraInicial(Barra barra)
     {
         barraInicial=barra;
     }
-    private void agregarBarrasGeneradas(Barra []barras)
+    public void agregarBarrasGeneradas(Barra []barras)
     {
         barrasGeneradas=barras;
+        cantidad=barras.length;
     }
     
     public float[] generarPuntos(boolean esLargo)
@@ -39,5 +51,10 @@ public class Pedido {
     public int obtenerCantidad()
     {
         return cantidad;
+    }
+
+    @Override
+    public String toString() {
+        return "Pedido{"+costoTotal + cantidad+'}';
     }
 }

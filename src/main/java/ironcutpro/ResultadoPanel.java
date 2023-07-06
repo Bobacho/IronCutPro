@@ -4,6 +4,13 @@
  */
 package ironcutpro;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author main_
@@ -13,8 +20,35 @@ public class ResultadoPanel extends javax.swing.JFrame {
     /**
      * Creates new form ResultadoPanel
      */
-    public ResultadoPanel() {
+    Registro<List<Pedido>> historial=new Registro("historial.txt");
+    Registro<Pedido> reg=new Registro<>("pedidoActual.txt");
+    Pedido temp;
+    public ResultadoPanel() throws IOException, FileNotFoundException, ClassNotFoundException {
         initComponents();
+        temp=reg.cargar();
+        float manoObra=10*temp.obtenerCantidad();
+        float material=1;
+        if(temp.barraInicial.obtenerMaterial().equals("Madera"))
+        {
+            material=5;
+        }
+        if(temp.barraInicial.obtenerMaterial().equals("Hierro"))
+        {
+            material=10;
+        }
+        if(temp.barraInicial.obtenerMaterial().equals("Cobre"))
+        {
+            material=15;
+        }
+        if(temp.barraInicial.obtenerMaterial().equals("Acero"))
+        {
+            material=20;
+        }
+        float costoTotal=manoObra+material*temp.barraInicial.obtenerLongitud();
+        temp.setCostoTotal(costoTotal);
+        TotalTrozos.setText(""+temp.obtenerCantidad());
+        TamañoTrozos.setText(""+temp.barraInicial.obtenerLongitud()/temp.obtenerCantidad());
+        jLabel10.setText(""+costoTotal);
     }
 
     /**
@@ -29,13 +63,10 @@ public class ResultadoPanel extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         TotalTrozos = new javax.swing.JLabel();
         TamañoTrozos = new javax.swing.JLabel();
-        ResiduoTrozos = new javax.swing.JLabel();
         CostoTotal = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        Atras = new javax.swing.JButton();
         FinalizarCompra = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
@@ -57,25 +88,15 @@ public class ResultadoPanel extends javax.swing.JFrame {
         jLabel4.setText("El tamaño de los Trozos es:");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setForeground(java.awt.Color.orange);
-        jLabel5.setText("El Residuo de los cortes es");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 300, -1, -1));
-
         TotalTrozos.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         TotalTrozos.setForeground(new java.awt.Color(204, 204, 204));
-        TotalTrozos.setText("jLabel6");
-        getContentPane().add(TotalTrozos, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 130, -1, -1));
+        TotalTrozos.setText(" ");
+        getContentPane().add(TotalTrozos, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 130, 90, -1));
 
         TamañoTrozos.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         TamañoTrozos.setForeground(new java.awt.Color(204, 204, 204));
-        TamañoTrozos.setText("jLabel7");
-        getContentPane().add(TamañoTrozos, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, -1, -1));
-
-        ResiduoTrozos.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        ResiduoTrozos.setForeground(new java.awt.Color(204, 204, 204));
-        ResiduoTrozos.setText("jLabel8");
-        getContentPane().add(ResiduoTrozos, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 300, -1, -1));
+        TamañoTrozos.setText(" ");
+        getContentPane().add(TamañoTrozos, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, 150, -1));
 
         CostoTotal.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         CostoTotal.setForeground(java.awt.Color.orange);
@@ -84,13 +105,8 @@ public class ResultadoPanel extends javax.swing.JFrame {
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel10.setText("jLabel10");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 390, -1, -1));
-
-        Atras.setBackground(new java.awt.Color(102, 102, 102));
-        Atras.setForeground(new java.awt.Color(153, 255, 153));
-        Atras.setText("Atras");
-        getContentPane().add(Atras, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 440, -1, -1));
+        jLabel10.setText(" ");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 390, 120, -1));
 
         FinalizarCompra.setBackground(new java.awt.Color(153, 255, 153));
         FinalizarCompra.setForeground(new java.awt.Color(102, 102, 102));
@@ -110,7 +126,22 @@ public class ResultadoPanel extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void FinalizarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FinalizarCompraActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            List<Pedido> temp=new ArrayList<>();
+            temp=historial.cargar();
+            temp.add(this.temp);
+            historial.guardar(temp);
+            reg.guardar(this.temp);
+            this.setVisible(false);
+            CambioPanel c=new CambioPanel();
+            c.setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(ResultadoPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ResultadoPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_FinalizarCompraActionPerformed
 
     /**
@@ -142,15 +173,19 @@ public class ResultadoPanel extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new ResultadoPanel().setVisible(true);
+            try {
+                new ResultadoPanel().setVisible(true);
+            } catch (IOException ex) {
+                Logger.getLogger(ResultadoPanel.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(ResultadoPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Atras;
     private javax.swing.JLabel CostoTotal;
     private javax.swing.JButton FinalizarCompra;
-    private javax.swing.JLabel ResiduoTrozos;
     private javax.swing.JLabel TamañoTrozos;
     private javax.swing.JLabel TotalTrozos;
     private javax.swing.JLabel jLabel1;
@@ -158,6 +193,5 @@ public class ResultadoPanel extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     // End of variables declaration//GEN-END:variables
 }
